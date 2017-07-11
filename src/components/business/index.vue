@@ -13,16 +13,21 @@
 			<div @click="showAgreement" class="item"><b class="icon zlxg-icon"></b>资料修改 <b class="arrow"></b></div>
 			</router-link>
 			<router-link to="modifypwd">
-			<div class="item"><b class="icon mmxg-icon"></b>密码修改 <b class="arrow"></b></div>
+				<div class="item"><b class="icon mmxg-icon"></b>密码修改 <b class="arrow"></b></div>
 			</router-link>
 			<router-link to="risk">
-			<div class="item"><b class="icon fxcp-icon"></b>风险测评 <b class="arrow"></b></div>
+				<div class="item"><b class="icon fxcp-icon"></b>风险测评 <b class="arrow"></b></div>
+			</router-link>
+
+			<router-link to="survey">
+				<div class="item myddc"><b class="icon myddc-icon"></b>满意度调查 <b class="arrow"></b></div>
 			</router-link>
 			<router-link to="questionnaire">
-			<div class="item"><b class="icon fxcp-icon"></b>存量回访 <b class="arrow"></b></div>
+				<div class="item"><b class="icon clhf-icon"></b>存量回访 <b class="arrow"></b></div>
 			</router-link>
-			<router-link to="/survey">
-			<div class="item"><b class="icon fxcp-icon"></b>满意度调查 <b class="arrow"></b></div>
+			
+			<router-link to="survey">
+				<div class="item yybcx"><b class="icon yybcx-icon"></b>营业部网点查询 <b class="arrow"></b></div>
 			</router-link>
 		</div>
 	</div>
@@ -103,6 +108,21 @@
 }
 .fxcp-icon{
 	background:url(../../assets/img/secret.png) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+.myddc,.yybcx{
+	margin-top:1rem;
+}
+.myddc-icon{
+	background:url(../../assets/img/myddc-icon.png) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+.clhf-icon{
+	background:url(../../assets/img/clhf-icon.png) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+.yybcx-icon{
+	background:url(../../assets/img/yywdcx-icon.png) no-repeat 0 0;
 	background-size: 100% 100%;
 }
 </style>

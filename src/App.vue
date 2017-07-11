@@ -23,6 +23,7 @@
     }
 </script>
 <style>
+	@import 'assets/css/ydui.css';
     @import 'assets/css/mint.style';
     @import 'assets/css/animate.min.css';
     @import 'assets/css/common';

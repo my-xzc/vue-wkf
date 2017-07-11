@@ -37,7 +37,7 @@ html,body{
 @media screen and (min-width:800px){html{font-size:25px}}
 .container-fluid{
 	padding:0;
-	font-size:1.4rem;
+	font-size:1.2rem;
 }
 .clearfix:before,
 .clearfix:after {
@@ -376,12 +376,12 @@ html,body{
 		display:block;
 		margin-bottom: .3rem;
 		background:#fff;
-		font-size: 1.4rem;
+		font-size: 1.2rem;
 		color: #4D4D4D;
 	}
 	/*联系人资料修改*/
 	.delxrCheckBtn,.zhxxCheckBtn,.sjyzCheckBtn,.fxLevelBtn,.fxcpDisabled,.fxcpSubmit,.submityzm,.queren{
-	font-size:1.6rem;
+	font-size:1.4rem;
 	background:#C7322F;
 	height: 48px;
 	line-height: 48px;
@@ -430,7 +430,7 @@ html,body{
 	display: inline-block;
 	padding: 6px 12px;
 	margin-bottom: 0;
-	font-size: 1.6rem;
+	font-size: 1.5rem;
 	font-weight: normal;
 	line-height: 1.42857143;
 	text-align: center;
@@ -621,4 +621,7 @@ input::-moz-focus-inner {
 .btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+img{
+  display:inline;
 }

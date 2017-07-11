@@ -155,6 +155,7 @@
 		padding: 1rem;
 		box-sizing: border-box;
 		display: block;
+		font-size: 1.2rem;
 	}
 	.questionnaire-content{
 		min-height:calc(100vh - 120px);
@@ -213,6 +214,9 @@
 	.questionnaire .barcode{
 		text-align: center;
 		margin-top: 1rem;
+	}
+	.barcode img{
+		display:inline;
 	}
 	.questionnaire .mint-radio-label{
 		display: inline-block;

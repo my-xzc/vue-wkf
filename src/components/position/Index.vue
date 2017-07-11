@@ -192,4 +192,7 @@
 	.yk-bk {
 		color: black;
 	}
+	label.btn{
+		height: 3rem;
+	}
 </style>

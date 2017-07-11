@@ -25,5 +25,6 @@ const apis = {
 	'questionnaire': jsonServiceUrl,
 	'getNewStock': baseServiceUrl + 'ns/stockquery',
 	'orderNewStock': baseServiceUrl + 'ns/sub',
+	'submitAnswer':baseServiceUrl+'acct/risks/answer'
 }
 export default apis;

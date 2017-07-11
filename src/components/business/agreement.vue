@@ -1,6 +1,6 @@
 <template>
 	<div style="padding-bottom:7rem;position:relative;-webkit-overflow-scrolling: touch;">
-    <div class="text" style="padding: 1rem 1.5rem;font-size: 1.4rem;">
+    <div class="text" style="padding: 1rem 1.5rem;font-size: 1.2rem;">
         <p>尊敬的客户：
         </p>
 

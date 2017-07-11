@@ -15,24 +15,61 @@
 				<p>投资品种:</p>
 				<p ><span class="types"></span>{{type}}</p>
 			</div>
+			<div class="investment-kind expect">
+                <p>期望收益：</p>
+                    <div class="income">{{income}}</div>
+            	</div>
 		</div>
 	</div>
 	<router-link to='/business' class=" btn-danger btn-block fxLevelBtn">确&nbsp;&nbsp;定</router-link>
 </div>
 </template>
 <script>
+import {Radio,MessageBox} from 'mint-ui';
 	export default {
 		data() {
 				return {
-					level: this.$cache.get('riskLevel'),
-					type: this.$cache.get('riskType'),
-					date: this.$cache.get('riskDate'),
-					duration: this.$cache.get('riskDuration'),
+					level: '',
+					type: '',
+					date:'',
+					income: '',
+					duration:'',
+					info:''
 				}
-			}
+			},
+			methods:{
+				getInfo () {
+						var vm=this;
+						// vm.info=JSON.parse(localStorage.getItem("user"));
+						// JSON.parse(localStorage.getItem("info"))
+						vm.info=this.getCookie('user')
+						if(vm.info){
+							console.log(vm.info);
+						}else{
+							MessageBox('提示','未获取到相关信息！')
+						}
+							
+				},
+				getCookie(name) 
+						{ 
+							var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+						
+							if(arr=document.cookie.match(reg))
+						
+								return unescape(arr[2]); 
+							else 
+								return null; 
+						} 
+			},
+			mounted() {
+				this.getInfo();	
+		}
 	}
 </script>
 <style >
+.investment-kind p{
+	font-size: 1.3rem;
+}
 .fxlevel-header{
 	min-height: 17rem!important;
 }
@@ -66,10 +103,16 @@
 	padding: 1rem;
 }
 .investment-kind p:first-child{
-	font-size:1.5rem;
+	/*font-size:1.5rem;*/
 	margin-bottom:1rem;
 }
 .investment-kind p:last-child{
 	text-indent:2em;
+}
+.investment-kind p{
+	font-size: 1.2rem;
+}
+.expect{
+	margin-top: .5rem;
 }
 </style>

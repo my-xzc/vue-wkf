@@ -7,15 +7,16 @@
 	</mt-radio> -->
 	<div class="ywbl_fxcp_fxcp" id="ywbl_fxcp_fxcp">
 		<div id="render" class="fxcpPage page-content">
-			<div class="article" v-for="item in riskQuestions" >
+			<div class="article" v-for="item in riskQuestions" :key="item.id">
 				<!-- <header class="progress">当前进度为{{item.progress}}/{{riskQuestions.length}}</header> -->
 				<section class="fxcpBox">
 					<div id="troubleBox">
 						<div class="trouble_lists itemOne">
 							<div class="fxcpTitle">{{item.progress}}.{{item.question}}</div>
 							<ul id="trouble">
-								<li v-for="key in item.answers" >
-									<input class="radio" type="radio" :name="item.progress" :value="key.value">
+								<li v-for="key in item.answers" :key="key.id">
+									<input class="radio" v-if="item.opt == '0'" type="radio" :name="item.progress" :value="key.value">
+									<input class="radio" v-if="item.opt == '1'" type="checkbox" :name="item.progress" :value="key.value">
 									<div class="choose-text">
 										<span class="fxcpChecked">{{key.cell}}</span>
 										{{key.label}}
@@ -67,44 +68,46 @@
 					}, 1000)
 				},
 				commit() {
-					var answers = document.querySelectorAll('.radio:checked');
-					if (answers.length < 8) {
-						// this.toast('请完成所有答题！')
-						MessageBox('提示','请完成所有答题！')
-						return false;
-					}
-					var key = '',
-						value = '';
-					for (var i = 0; i < answers.length; i++) {
-						key += (i + 1) + '|'
-						value += answers[i].value + '|'
-					}
-					var vm = this;
-					var params = {
-						keyValue: value,
-						subriskSn: key
-					}
-					var type = vm.types[answers[2].value-1],
-						duration = vm.durations[answers[2].value-1];
-					vm.$cache.set('riskType',type)
-					vm.$cache.set('riskDuration',duration)
-					vm.showLoading = true;
-					vm.$services.sendRiskResult(params, function(res){
-						vm.showLoading = false;
-						var cb = function(){
-							vm.$cache.set('riskDate', new Date().Format('yyyy.MM.dd'))
-							vm.$cache.set('riskLevel', res.results[0].rating_lvl_name)
-							vm.$router.push('risklevel');
-						}
-						if(res.error) {
-						
-							MessageBox('提示', res.message)
-						}else{
-							
-							MessageBox('提示', res.message).then(cb)
+					var vm=this;
+					var choices=[],
+						subrisksnArray=[],
+						len=$("div.trouble_lists").length;
 
+					for (let i= 0; i < len;i++){ 
+						if (!$("div.trouble_lists").eq(i).find("input").is(':checked')){ 
+								MessageBox('提示','请先答完题哦,亲！')
+								return false;
 						}
-					})
+					}
+					for(let i=0;i<=len;i++){
+                                choices[i] = [];
+								subrisksnArray.push(i); 
+                   }
+					$("input:checked").each(function(){
+                        var $this = $(this);
+                        var questionNo = /\d+/.exec($this.attr('name'));
+                        choices[questionNo].push($(this).val());
+                    });	
+                    var keyvalue = [];
+                    for(let i = 1; i <= len;i ++){
+                        keyvalue.push(choices[i].join(','));
+                    }
+					var param = {};
+                    param.keyValue = keyvalue.join('|');
+                    param.subriskSn = subrisksnArray.join('|').replace('0|',' ');
+					var success = function (res) {
+						if(res.error == true){
+							// MessageBox('提示',res.message);
+							vm.$router.push({ path: 'level' });
+						}else{
+							localStorage.setItem("info", JSON.stringify(res));
+							vm.$router.push({ path: 'level' });
+						}
+					}
+					var error = function(res){
+							MessageBox('提示',res.message)
+					}
+					vm.$services.submitAnswer(param,success,error);
 				}
 			},
 			mounted() {
@@ -125,6 +128,7 @@
 							if (quest.survey_col == a) {
 								newQuest.question = quest.survey_col_text;
 								newQuest.progress = quest.survey_col;
+								newQuest.opt = quest.survey_col_opt;
 								newQuest.answers.push({
 									label: quest.survey_cell_text,
 									value:quest.survey_cell,
@@ -150,7 +154,7 @@
 </script>
 <style>
 .ywbl_fxcp_fxcp{
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 
 }
 @media screen and(max-width:320px ){.ywbl_fxcp_fxcp{min-height:32.5rem;}}

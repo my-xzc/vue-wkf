@@ -1,6 +1,6 @@
 <template>
 <div class="risk-result">
-    <div class="text" style="padding: 1rem 1.5rem;font-size:1.4rem;padding-bottom:100px;">
+    <div class="text" style="padding: 1rem 1.5rem;font-size:1.2rem;padding-bottom:100px;">
         <p style="text-align: center;font-weight:900;font-size:1.5rem;margin-top: 1.5rem;">
             客户风险承受能力等级：
             <span class="rating_lvl">

@@ -191,6 +191,15 @@ export default {
 			this.postData(apiConfig['validPassword'], params, callback, errCallback);
 		},
 		/**
+		 * [submitAnswer 提交答案]
+		 * @param  {[type]}   submit      [description]
+		 * @param  {Function} callback [description]
+		 * @return {[type]}            [description]
+		 */
+		submitAnswer(params, callback, errCallback) {
+			this.postData(apiConfig['submitAnswer'], params, callback, errCallback);
+		},
+		/**
 		 * [getAllocation 打新]
 		 * @param  {Function} callback [description]
 		 * @return {[type]}            [description]

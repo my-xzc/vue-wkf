@@ -334,7 +334,7 @@
 		padding-bottom: 1px;
 	}
 	.zhxx-lists-head{
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	height: 5rem;
 	line-height: 5rem;
 	text-align: center;
@@ -344,7 +344,7 @@
 }
 
 .zhxx-lists li:not(:first-child){
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	line-height: 5rem;
 	padding-left: 1rem;
 	background: #fff;
@@ -419,7 +419,7 @@ textarea:-ms-input-placeholder{
 }
 .zhxxContactInput{
 	height:4.8rem;
-	padding-right:1.5rem;
+	/*padding-right:1.5rem;*/
 	color:#000!important;
 }
 .addr-content{

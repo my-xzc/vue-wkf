@@ -220,6 +220,9 @@
 #login .login_txt,#login .login-short-txt {
 	border-radius: 0!important;
 }
+.login_txt{
+	background: #fff;
+}
 
 #login .height-line {
 	display: inline-block;
@@ -260,7 +263,7 @@ input[type="checkbox"] {
 	border: none;
 }
 
-input[type="checkbox"]:checked {
+#checkbox input[type="checkbox"]:checked {
 	background-image: url('../../assets/img/checkbox.png');
 	background-position: 0 0;
 	background-repeat: no-repeat;

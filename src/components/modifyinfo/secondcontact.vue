@@ -69,17 +69,16 @@
 	min-height:calc(100vh - 15.8rem) ;
 }
 .delxr-header{
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	height: 5rem;
 	line-height: 5rem;
 	text-align: center;
 	background:#fff;
-	margin-top:1rem;
-	margin-bottom: .5rem;
+	margin-bottom:1rem 0 .5rem;
 }
 .delxrmain .mint-cell-wrapper{
 	background-image: none;
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	border-bottom: 1px solid #f2f2f2;
 }
 	.nd-contact {

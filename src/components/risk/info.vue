@@ -97,10 +97,9 @@
                     param.subriskSn = subrisksnArray.join('|').replace('0|',' ');
 					var success = function (res) {
 						if(res.error == true){
-							// MessageBox('提示',res.message);
-							vm.$router.push({ path: 'level' });
+							MessageBox('提示',res.message);
 						}else{
-							localStorage.setItem("info", JSON.stringify(res));
+							vm.$services.setCookie("info", JSON.stringify(res));
 							vm.$router.push({ path: 'level' });
 						}
 					}
@@ -152,6 +151,7 @@
 			}
 	}
 </script>
+
 <style>
 .ywbl_fxcp_fxcp{
 	font-size: 1.2rem;
@@ -177,7 +177,7 @@
     position: relative;
     width: 86%;
     margin: auto;
-    min-height: 28rem;
+    /* min-height: 28rem;*/
     /* height: auto; */
     /* overflow: auto; */
     background: #fff;
@@ -225,7 +225,7 @@
     position: relative;
     /*min-height: 4rem;*/
     height: auto;
-    padding:2rem 1rem;
+    padding:1rem 1rem;
     /* line-height: 4rem; */
     /*padding: 1rem;*/
     border: 1px solid #F2F2F2;

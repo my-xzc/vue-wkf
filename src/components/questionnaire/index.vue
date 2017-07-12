@@ -3,15 +3,28 @@
 	<div class="questionnaire-content">
 		<h3>尊敬的用户：</h3>
 		<p>您好！感谢您参与存量客户回访调查，请根据实际情况填写下列问题：</p>
-		<div v-for="item in questions">
-			<mt-radio
-			:title="item.question"
-			v-model="item.answer"
-			:options="item.options"
-			@change="selectRadio">
-			</mt-radio>
-		</div>
+		<div v-for="item in questions" :key="item.id"  class="m-cell" >
+                            <h2>{{item.question}}</h2>
+                            <label  v-for=" lt in item.options" :key="lt.id"  class="cell-item">
+                              <span class="cell-left">{{lt}}</span>
+                                    <label class="cell-right">
+                                         <input type="radio" :name="item.index" :value="lt" @change="checkSelect"/>
+                                              <i class="cell-radio-icon"></i>
+                                    </label>
+                            </label>
+                           
+                        </div>
+		<div class="m-cell">
+                  	<div class="cell-item">
+                      	<div class="cell-right">
+                          <textarea id="reason" class="cell-textarea" disabled="disabled" placeholder="请填写原因！" name="a26"></textarea>
+                       	</div>
+                  	</div>
+        </div>
 		<div class="questionnaire-supplement">
+			<p v-if=" showP1 || showP2" class="queryP">风险提示：</p>
+			<p v-show="showP1" class="queryP" >分级基金产品特点区别于传统上市基金和股票，B份额带有杠杆属性，特别是临近向下折算时的杠杆较高，具有一定风险，请您详细阅读基金公司发布的文件、公告、在全面了解分级基金产品知识及风险收益特征的基础上谨慎投资。</p>
+			<p v-show="showP2" class="queryP" >创业板企业经营波动很大，退市制度要求严格，投资风险相对较高，请您谨慎投资。为确保重要信息能够及时通知到您，请在【我的账户】-【业务办理】-【资料修改】菜单中填写第二联系人资料。</p>
 			<p>现我公司提供更多种基金以及金融产品供您选择，您可以根据产品特点、投资方向、风险收益特征等，结合您自身的风险等级和投资偏好来选择相匹配的产品。同时请您通过正规渠道认购产品，防范非法集资，保证自身权益。</p>
 			<p>您可以通过以下途径查询产品批准信息：</p>
 			<p>1、中国证券投资基金协会网站<a href="http://www.amac.org.cn">http://www.amac.org.cn</a></p>
@@ -32,12 +45,7 @@
 </div>
 </template>
 <script>
-	import {
-		Radio
-	} from 'mint-ui';
-	import {
-		MessageBox
-	} from 'mint-ui';
+	import {Radio,MessageBox} from 'mint-ui';
 	import VLoading from '../common/loading'
     import VToast from '../common/toast'
 	import VPreloading from '../common/preloading'
@@ -49,7 +57,10 @@
 					showPreloading: false,
 					showToast: false,
 					reason: '',
-					questions: []
+					questions: [],
+					
+					showP1:false,
+					showP2:false
 				}
 			},
 			components: {
@@ -68,13 +79,13 @@
 				}, {
 					index: 2,
 					question: '2、为了能够更好地为您服务，请问您对目前我们营业部的服务感到满意吗？',
-					options: [{
-						label: 'A、满意',
-						value: 'A'
-					}, 'B、一般', 'C、不满意（请填写原因）'],
+					options: ['A、满意', 'B、一般', 'C、不满意（请填写原因）'],
 					reason: true,
 					answer: ''
-				}]
+				}],
+				this.quertQuestions();
+				this.query()
+
 			},
 			methods: {
 				toast(msg) {
@@ -88,17 +99,36 @@
 						vm.lock = false
 					},5000)
 				},
-				selectRadio(value) {
+				query(){
 					var vm = this,
-						el = this.$el;
-					if(value=='C、不满意（请填写原因）' && !el.querySelectorAll('.reason').length){
-						var reason = document.createElement('input');
-						reason.className = 'reason';
-						reason.onchange = function() {
-							vm.reason = this.value;
+					hasGemauth=0,
+					hasSplitStock=0;
+					var queryGemauth = function(){
+					var callback=function(res){
+						if(res.error=='true'){
+							MessageBox("提示",res.message)
+						}else{
+							if(res.message !='您暂未开通创业板!'){
+							   hasGemauth = 1 ;
+							   vm.showP1 = true;
+								}
 						}
-						el.querySelectorAll('.mint-radiolist-label')[5].appendChild(reason);
 					}
+					vm.$services.gemauth(callback);
+				};
+				var queryStrfunds = function(){
+						var callback=function(res){
+						if(res.error=='true'){
+							MessageBox("提示",res.message)
+						}else{
+						return hasSplitStock =	Number(res.results[0].hasSplitStock);
+							vm.showP1 = true;
+						}
+					}
+					vm.$services.strfunds(callback);
+				}
+					queryGemauth();
+					queryStrfunds();
 				},
 				quertQuestions() {
 					var vm = this;
@@ -108,16 +138,29 @@
 						'khzzh': JSON.parse(vm.$services.getCookie('user')).khzh,
 					};
 					this.$services.questionnaire(params, function(res) {
-						vm.status = parseInt(res.results[0].khstatus);
-						vm.status && vm.toast("已完成过答题！");
+						vm.status = parseInt(res.results[0].status);
+						vm.status && MessageBox("提示","您已经做过问卷回访！");
 					})
+				},
+				checkSelect(value){
+							var vm=this;	
+							if(value.srcElement.value== "C、不满意（请填写原因）"){
+									$(".cell-textarea").removeAttr('disabled');
+										document.getElementById("reason").onchange = function() {
+											vm.reason = this.value;
+										}
+							}else{
+										$(".cell-textarea").attr('disabled','disabled');
+										$('#reason').val('')
+								}
+
 				},
 				submitQuestions() {
 					var vm = this,
 						result = '',
 						els = document.querySelectorAll('input:checked');
 					if(els.length<2){
-						vm.toast("未完成所有答题！");
+						MessageBox("提示","未完成所有答题！");
 						return false;
 					}
 					result += els[0].value + '|' + els[1].value + this.reason;
@@ -132,15 +175,14 @@
 					this.$services.questionnaire(params, function(res) {
 						vm.showLoading = false;
 						var msg = parseInt(res.error_no)?res.error_info:res.message;
-						// vm.toast(msg);
 						MessageBox({
-							title: '问卷已提交',
-							message: '感谢您参与本次回访',
+							title: '提示',
+							message: msg,
 							confirmButtonText: '我知道了'
 						}).then(actions=>{
-							WeixinJSBridge.invoke('closeWindow', {}, function(res) {
-								//alert(res.err_msg);
-							});
+							// WeixinJSBridge.invoke('closeWindow', {}, function(res) {
+							// });
+							 vm.$router.push({ path: 'business' });
 						});
 					})
 				}
@@ -168,7 +210,10 @@
 		text-indent: 2em;
 		font-size: 1.2rem;
 	}
-	
+	.queryP{
+		color:#C52727;
+		text-indent: 2em;
+	}
 	.questionnaire .mint-cell-wrapper {
 		font-size: 1rem;
 	}
@@ -204,6 +249,13 @@
 	.mint-radio-input:checked + .mint-radio-core {
 	    background-color: #c52727;
     	border-color: #c52727;
+	}
+	.mint-radio-input:checked{
+		color:#c52727;
+	}
+	.mint-radio-core::after{
+		width:6px;
+		height:6px;
 	}
 	.mint-msgbox-btn {
     	color: #c52727;

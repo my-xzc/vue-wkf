@@ -625,3 +625,6 @@ input::-moz-focus-inner {
 img{
   display:inline;
 }
+.cell-right textarea{
+  font-size:1.2rem;
+}

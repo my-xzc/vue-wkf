@@ -3,7 +3,7 @@
 	<div id="render" class="fxcpPage page-content">
 		<header class="header fxlevel-header">
 			<span class="logo fxlevel-logo"></span>
-			<p class="level">客户风险承受能力等级： <span id="rating_lvl_name">{{level}}</span></p>
+			<p class="level">客户风险承受能力等级： <span id="rating_lvl_name">{{level}}</span>(<span id="rating_lvl"></span >)</p>
 			<p style="margin:10px 0;">风险测评时间 : <span class='rating_date'>{{date}}</span></p>
 		</header>
 		<div class="main">
@@ -13,7 +13,7 @@
 			</div>
 			<div class="investment-kind">
 				<p>投资品种:</p>
-				<p ><span class="types"></span>{{type}}</p>
+				<p ><span class="types"></span>{{types}}</p>
 			</div>
 			<div class="investment-kind expect">
                 <p>期望收益：</p>
@@ -29,8 +29,9 @@ import {Radio,MessageBox} from 'mint-ui';
 	export default {
 		data() {
 				return {
-					level: '',
-					type: '',
+					levelName: '',
+					level:'',
+					types: '',
 					date:'',
 					income: '',
 					duration:'',
@@ -40,26 +41,20 @@ import {Radio,MessageBox} from 'mint-ui';
 			methods:{
 				getInfo () {
 						var vm=this;
-						// vm.info=JSON.parse(localStorage.getItem("user"));
-						// JSON.parse(localStorage.getItem("info"))
-						vm.info=this.getCookie('user')
+						var infoObj={};
+						vm.info=vm.$services.getCookie("user");
 						if(vm.info){
-							console.log(vm.info);
+							infoObj=JSON.parse(vm.info);
+							this.level = infoObj.rating_lvl;
+							this.levelName = infoObj.rating_lvl_name;
+							this.types = infoObj.invest_pro_name;
+							this.duration=infoObj.invest_lmt_name;
+							this.income=infoObj.expect_income_name;
 						}else{
 							MessageBox('提示','未获取到相关信息！')
 						}
 							
-				},
-				getCookie(name) 
-						{ 
-							var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-						
-							if(arr=document.cookie.match(reg))
-						
-								return unescape(arr[2]); 
-							else 
-								return null; 
-						} 
+				}
 			},
 			mounted() {
 				this.getInfo();	

@@ -26,9 +26,9 @@
 				<div class="item"><b class="icon clhf-icon"></b>存量回访 <b class="arrow"></b></div>
 			</router-link>
 			
-			<router-link to="survey">
+			<a href="http://info.hx168.com.cn/ljhx/yybwd/index.shtml">
 				<div class="item yybcx"><b class="icon yybcx-icon"></b>营业部网点查询 <b class="arrow"></b></div>
-			</router-link>
+			</a>
 		</div>
 	</div>
 	<v-loading v-show="showLoading"></v-loading>

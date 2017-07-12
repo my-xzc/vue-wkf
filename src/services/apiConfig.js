@@ -25,6 +25,8 @@ const apis = {
 	'questionnaire': jsonServiceUrl,
 	'getNewStock': baseServiceUrl + 'ns/stockquery',
 	'orderNewStock': baseServiceUrl + 'ns/sub',
-	'submitAnswer':baseServiceUrl+'acct/risks/answer'
+	'submitAnswer': baseServiceUrl + 'acct/risks/answer',
+	'gemauth': baseServiceUrl + 'acct/gemauth',//查询创业板权限
+	'strfunds': baseServiceUrl + 'acct/strfunds'//查询分级基金
 }
 export default apis;

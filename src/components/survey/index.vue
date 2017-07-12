@@ -1,120 +1,123 @@
 <template>
         <div id="myddc">
-
-                <!--满意度调查-->
-                <!--<div v-for="item in list" :key="item.id">
-                    <div v-if=" item.type !='textarea' "><h2>{{item.title}}</h2>
-                        <label  v-for="list in item.checkItem" :key="list.id" class="cell-item">
-                              <span class="cell-left">{{list}}</span>
-                                    <label class="cell-right">
-                                         <input :type="list.type" :name="list.name"/>
-                                              <i class="cell-"+list.type+"-icon"></i>
-                                    </label>
-                        </label>
-                    
-                    </div>
-                       
-
-                </div>-->
                 <img src="../../assets/img/banner_2017.jpg"/>
                 <p>尊敬的投资者：</p>
                 <p class="intro">为了更好地为您提供服务，感谢您于百忙之中参与我司2017年投资者满意度调查，您所提的每一项宝贵意见都将成为我们改进的方向。</p>
-                <div id="html">
-                </div>
+                <!--满意度调查-->
+                <form name="form1">
+                     <div v-for="(item,len) in list" :key="item.id">
+                        <div v-if = " item.type == 'radio'" class="m-cell questionbox" :class="item.name">
+                            <h2>{{item.title}}</h2>
+                            <label  v-for=" (lt,index) in item.checkItem"  class="cell-item" :key="lt">
+                              <span class="cell-left">{{lt}}</span>
+                                    <label class="cell-right">
+                                         <input :type="item.type" :name="item.name" :value="String.fromCharCode(index+65) " />
+                                              <i class="cell-radio-icon"></i>
+                                    </label>
+                            </label>
+                        </div>
+                        <div v-if = " item.type == 'checkbox'" class="m-cell questionbox" :class="item.name">
+                            <h2>{{item.title}}</h2>
+                            <label  v-for=" (lt,index) in item.checkItem" class="cell-item" :key="lt">
+                              <span class="cell-left">{{lt}}</span>
+                                    <label class="cell-right">
+                                         <input :type="item.type" :name="item.name" :value="String.fromCharCode(index+65)" />
+                                              <i class="cell-checkbox-icon"></i>
+                                    </label>
+                            </label>
+                        </div>
+                     <div v-if=" len == 25"  class="cell-item">
+                                    <div class="cell-right">
+                                        <textarea id="question" class="cell-textarea" placeholder="其他方面" name="answer26"></textarea>
+                                    </div>
+                                </div> 
+                    <div v-if = " item.type == 'textarea' " class="m-cell " >
+                            <h2>30、如果您对本公司有任何建议，欢迎您写在下列方框中。</h2>
+                            <div class="m-cell">
+                                    <div class="cell-item">
+                                        <div class="cell-right">
+                                           <textarea id="questionarea" class="cell-textarea" placeholder="说出你的想法吧！" name="a30"></textarea>
+                                        </div>
+                                    </div>
+                            </div>
+                    </div>
+                </div> 
+                </form>
                 <p>
                     到此，您已经填完了整张问卷，我们再次衷心的感谢您对我们公司的支持。我们一定会根据您对我们的意见和建议，把我们对您的服务做得更好。愿我们能陪伴您在事业上取得更大的成就！
                 </p>
                 <div class="m-button">
-                    <a href="javascript:;" class="btn-block btn-primary" id="J_Btn" @click="getInput">提&nbsp;交</a>
+                    <a href="javascript:;" class="btn-block btn-primary" id="J_Btn" @click="commit">提&nbsp;交</a>
                 </div>
+                <mt-spinner v-show="showload" type="fading-circle"></mt-spinner>
         </div>
 </template>
 <script>
+    import {Spinner,MessageBox} from 'mint-ui';
     export default{
         data () {
             return {
                 list:this.$statics.myddcQuestions.data,
                 choices:[],
-                keyvalue:[]
+                keyvalue:[],
+                showload:false,
+                reason:'',
+                other:'',
+                sUrl:'http://www.hx168.com.cn/hxzq/myddc2017/submitJsp.jsp'
             }
         },
         methods:{
-            con(){
-                var html= '';
-                 this.list.forEach(function(element) {
-                    html += '<div class="'+element.name+' m-cell"><h2>'+element.title+'</h2>';
-                                    if(element.type != 'textarea'){   
-                                            element.checkItem.forEach(function(ele,index) {
-                                                    html += '<label class="cell-item">\
-                                                                <span class="cell-left">'+ele+'</span>\
-                                                                <label class="cell-right">\
-                                                                    <input type="'+element.type+'" name="'+element.name+'" value="'+String.fromCharCode(index+65)+'"/>\
-                                                                    <i class="cell-'+element.type+'-icon"></i>\
-                                                                </label>\
-                                                            </label>';
-                                            }, this);   
-                                        }
-                                    if(element.type == 'textarea'){
-                                                html += '<div class="m-celltitle"></div>\
-                                                            <div class="m-cell">\
-                                                                <div class="cell-item">\
-                                                                    <div class="cell-right">\
-                                                                        <textarea class="cell-textarea" placeholder="说出你的想法吧！" name="a30"></textarea>\
-                                                                    </div>\
-                                                                </div>\
-                                                            </div>';
-                                            }
-                    html += '</div>';
-                }, this); 
-                  $('#html').append(html).find('.a26').append('<div class="m-celltitle"></div>\
-                                                    <div class="m-cell">\
-                                                        <div class="cell-item">\
-                                                            <div class="cell-right">\
-                                                                <textarea class="cell-textarea" placeholder="" name="a26"></textarea>\
-                                                            </div>\
-                                                        </div>\
-                                                    </div>');
-            },
-            getRadioVal (obj) {
-            var len = obj.length;
-            var val = "";
-            for (var i=0; i<len; i++)
-            {
-                if(obj[i].checked)
-                    val=obj[i].value;
-            }
-            return val;
-            },
-            getCheckboxVal (obj) {
-                var len = obj.length;
-                var val = "";
-                for (var i=0; i<len; i++)
-                {
-                    if(obj[i].checked)
-                        val+=obj[i].value+",";
-                }
-                return val;
-            },
-            getInput(){
-                 for(var i=0;i<=30;i++){
-                    this.choices[i] = [];
-                   }
-                $("input:checked").each(function(){
+            commit() {
+					var vm=this;
+					var choices=[],
+						subrisksnArray=[],
+						len=$("div.questionbox").length;
+					for (let i= 0; i < len;i++){ 
+						if (!$("div.questionbox").eq(i).find("input").is(':checked')){ 
+								MessageBox('提示','请先答完题哦,亲！')
+								return false;
+						}
+					}
+					for(let i=0;i<=len;i++){
+                                choices[i] = [];
+                    }
+					$("input:checked").each(function(){
                         var $this = $(this);
                         var questionNo = /\d+/.exec($this.attr('name'));
-                        this.choices[questionNo].push($this.val());
-                        console.info(questionNo)
-                    });
-                    for(var i = 1,len=$("div[data-subrisksn]").length; i <= len;i ++){
-                        this.keyvalue.push(this.choices[i].join(','));
+                        choices[questionNo].push($(this).val());
+                    });	
+                    var keyvalue = [];
+                    var keyval=[];
+                    var keyvalList=''
+                        vm.reason = $('#questionarea').val();
+                        vm.other = $('#question').val();
+                    for(let i = 1; i <= len;i ++){
+                        keyvalue.push(choices[i].join(','));
                     }
-                    console.info(this.choices)
+                    keyvalue[25]=keyvalue[25]+','+vm.other;
+                        keyvalue.forEach(function(ele,index){
+                               keyval.push('a'+(index+1)+'='+ele+'&');
+                        })
+                    keyvalList = keyval.join('')+'a30='+vm.reason;
+                    
+                  $.ajax({
+                    url: vm.sUrl,
+                    data: keyvalList,
+                    complete: function (res) { 
+                        if (res.status != 404 && res.readyState == 4) {
+                            MessageBox('提示', "提交成功!").then(function() {
+                                // WeixinJSBridge.invoke('closeWindow', {}, function(res) {});
+                                vm.$router.push({ path: 'business' });
+						})
+                        } else { 
+                            MessageBox('提示', "网络错误！");
+                        }
+                    }
+                }).fail(function (res) { 
+                             MessageBox('提示', "未获取到用户信息！");
+                })			
             }
-        },
-        mounted(){
-            this.con();
         }
-
     }
 
 </script>
@@ -125,6 +128,9 @@
     #myddc p{
         padding:1rem 1rem 0;
         font-size: 1.25rem;
+    }
+    form[name=form1]{
+        margin: 1rem;
     }
     #myddc .intro{
         text-indent: 2rem;

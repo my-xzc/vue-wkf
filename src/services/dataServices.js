@@ -246,6 +246,24 @@ export default {
 			this.postData(apiConfig['modifyPwd'], params, callback, errCallback);
 		},
 		/**
+		 * [gemauth 创业板权限]
+		 * @param  {Function} callback    [description]
+		 * @param  {[type]}   errCallback [description]
+		 * @return {[type]}               [description]
+		 */
+		gemauth(callback, errCallback) {
+			this.getData(apiConfig['gemauth'],callback);
+		},
+		/**
+		 * [strfunds 分级基金]
+		 * @param  {Function} callback    [description]
+		 * @param  {[type]}   errCallback [description]
+		 * @return {[type]}               [description]
+		 */
+		strfunds(callback, errCallback) {
+			this.getData(apiConfig['strfunds'],callback);
+		},
+		/**
 		 * [getProducts 产品]
 		 * @param  {Function} callback [description]
 		 * @return {[type]}            [description]

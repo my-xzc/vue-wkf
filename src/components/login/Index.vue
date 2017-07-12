@@ -165,7 +165,7 @@
 			}
 	}
 </script>
-<style>
+<style scoped>
 #login {
 	height: 100%;
 }
@@ -263,7 +263,7 @@ input[type="checkbox"] {
 	border: none;
 }
 
-#checkbox input[type="checkbox"]:checked {
+input[type="checkbox"]:checked {
 	background-image: url('../../assets/img/checkbox.png');
 	background-position: 0 0;
 	background-repeat: no-repeat;

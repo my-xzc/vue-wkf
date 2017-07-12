@@ -1,36 +1,36 @@
 <template>
 <div class="risk-quest">
 <div >
-	<!-- <mt-radio
-	:title="item.question"
-	:options="item.answers">
-	</mt-radio> -->
 	<div class="ywbl_fxcp_fxcp" id="ywbl_fxcp_fxcp">
 		<div id="render" class="fxcpPage page-content">
-			<div class="article" v-for="item in riskQuestions" :key="item.id">
-				<!-- <header class="progress">当前进度为{{item.progress}}/{{riskQuestions.length}}</header> -->
-				<section class="fxcpBox">
-					<div id="troubleBox">
-						<div class="trouble_lists itemOne">
-							<div class="fxcpTitle">{{item.progress}}.{{item.question}}</div>
-							<ul id="trouble">
-								<li v-for="key in item.answers" :key="key.id">
-									<input class="radio" v-if="item.opt == '0'" type="radio" :name="item.progress" :value="key.value">
-									<input class="radio" v-if="item.opt == '1'" type="checkbox" :name="item.progress" :value="key.value">
-									<div class="choose-text">
-										<span class="fxcpChecked">{{key.cell}}</span>
-										{{key.label}}
-									</div>
-								</li>
-							</ul>
+				<div  class="article " v-for="item in riskQuestions" :key="item.id"  v-show="showArticle == item.progress">
+					<header class="progress">当前进度为{{item.progress}}/{{riskQuestions.length}}</header>
+						<section class="fxcpBox animated fadeIn">
+						<div id="troubleBox">
+							<div class="trouble_lists itemOne">
+								<div class="fxcpTitle">{{item.progress}}.{{item.question}}</div>
+								<ul id="trouble">
+									<li v-for="key in item.answers" :key="key.id">
+										<input class="radio" v-if="item.opt == '0'" type="radio" :name="item.progress" :value="key.value">
+										<input class="radio" v-if="item.opt == '1'" type="checkbox" :name="item.progress" :value="key.value">
+										<div class="choose-text">
+											<span class="fxcpChecked">{{key.cell}}</span>
+											{{key.label}}
+										</div>
+									</li>
+								</ul>
+							</div>
 						</div>
-					</div>
-				</section>
-			</div>
+					</section>
+				</div>
 		</div>
 	</div>
 </div>
-<button @click="commit" v-show="!showLoading"  type="button" class="btn btn-danger btn-block">提&nbsp;&nbsp;交</button>
+<div class="btnGroup" v-show="!showLoading">
+	<button @click="back" class="btn btn-danger btn-block">上一题</button>
+	<button @click="next" v-show="!showSubmit"  type="button" class="btn btn-danger btn-block">下一题</button>
+	<button @click="commit" v-show="showSubmit" type="button" class="btn btn-danger btn-block">提&nbsp;&nbsp;交</button>
+</div>
 <v-toast v-show="showToast"></v-toast>
 <v-loading v-show="showLoading"></v-loading>
 </div>
@@ -50,7 +50,9 @@
 					showToast: false,
 					riskQuestions: [],
 					length:null,
-					show:1
+					show:1,
+					showArticle:1,
+					showSubmit:false
 				}
 			},
 			components: {
@@ -66,6 +68,27 @@
 						vm.showToast = false
 						cb&&cb()
 					}, 1000)
+				},
+				back(){
+					var vm=this;
+					
+					if(vm.showArticle>1){
+						vm.showArticle-=1;
+						vm.showSubmit=false;
+					}
+				},
+				next(){
+					var vm=this;
+					var len=$("div.trouble_lists").length;
+					console.info( vm.showArticle,len)
+					if(vm.showArticle < len){
+						vm.showArticle+=1;
+					}
+					if(vm.showArticle == len){
+						vm.showSubmit=true;
+					}else{
+						vm.showSubmit=false;
+					}
 				},
 				commit() {
 					var vm=this;
@@ -155,15 +178,16 @@
 <style>
 .ywbl_fxcp_fxcp{
 	font-size: 1.2rem;
+	min-height:calc(100vh - 17rem);
 
 }
-@media screen and(max-width:320px ){.ywbl_fxcp_fxcp{min-height:32.5rem;}}
+/*@media screen and(max-width:320px ){.ywbl_fxcp_fxcp{min-height:32.5rem;}}
 @media screen and (min-width: 321px) and (max-width: 374px){.ywbl_fxcp_fxcp{min-height:36.5rem;}}
 @media screen and (min-width:375px) and (max-width:384px){.ywbl_fxcp_fxcp{min-height:38.6rem;}}
 @media screen and (min-width:385px) and (max-width:410px){.ywbl_fxcp_fxcp{min-height:38.8rem;}}
-@media screen and (min-width:411px) and (max-width:639px){.ywbl_fxcp_fxcp{min-height:43.8rem;}}
+@media screen and (min-width:411px) and (max-width:639px){.ywbl_fxcp_fxcp{min-height:43.8rem;}}*/
 .article{
-	margin-top:1rem;
+	/*margin-top:1rem;*/
 }
 .progress {
     font-size: 1.4rem;
@@ -283,7 +307,7 @@
 	.risk-quest button {
 		font-size:1.6rem;
 		background:#C7322F;
-		height: 48px;
+		height: 4rem;
 		width: 90%;
 		margin:2rem 5% 24px;
 		border: none;

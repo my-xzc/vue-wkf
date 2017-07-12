@@ -67,7 +67,7 @@
   }
 	.risk-result button {
     position: fixed;
-    bottom:1rem;
+    bottom:3rem;
     left: 5%;
 		margin: 2rem auto;
 	}

@@ -55,7 +55,7 @@
         .agree-btn {
 				position: fixed;
         left: 5%;
-        bottom: 24px;
+        bottom: 4rem;
         margin: 1rem auto;
         width: 90%;
         border-radius: 15px;

@@ -138,7 +138,7 @@
 						'khzzh': JSON.parse(vm.$services.getCookie('user')).khzh,
 					};
 					this.$services.questionnaire(params, function(res) {
-						vm.status = parseInt(res.results[0].status);
+						vm.status = parseInt(res.results[0].khstatus);
 						vm.status && MessageBox("提示","您已经做过问卷回访！");
 					})
 				},

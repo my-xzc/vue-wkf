@@ -74,7 +74,7 @@
 	line-height: 5rem;
 	text-align: center;
 	background:#fff;
-	margin-bottom:1rem 0 .5rem;
+	margin:1rem 0 .5rem;
 }
 .delxrmain .mint-cell-wrapper{
 	background-image: none;

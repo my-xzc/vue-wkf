@@ -1,8 +1,8 @@
 <template>
       <transition   name="custom-classes-transition"
-                    enter-active-class="bounceInLeft"
-                    leave-active-class="bounceOutRight">
-        <router-view></router-view>
+                    enter-active-class="animated fadeIn"
+                    leave-active-class="animated fadeOut">
+        <router-view style="position:absolute;width:100%;height:auto;"></router-view>
     </transition>
 </template>
 <script>

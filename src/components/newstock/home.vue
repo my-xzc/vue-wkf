@@ -9,7 +9,7 @@
 			<div class="col-xs-2">选项</div>
 		</div>
 		<div id="stock-list" class="stock-list">
-            <div v-for="stock in stocks" class="row stock-items">
+            <div v-for="(stock,index) in stocks" class="row stock-items" :key="index">
                 <div class="col-xs-3">
                     <span>{{stock.stkname}}</span>
                     <br>

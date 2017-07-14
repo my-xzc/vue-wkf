@@ -1,6 +1,7 @@
 // nodejs 中的path模块
 var path = require('path');
 var root_path = path.resolve(__dirname);
+var webpack = require('webpack');
 var assets_path = path.resolve(root_path, 'src/assets');
 var build_path = path.resolve(root_path, 'build');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -60,6 +61,12 @@ module.exports = {
             filename: 'index.html',
             template: path.resolve(__dirname, '../index.html'),
             inject: true
-        })
+        }),
+         new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"dev"'
+            },
+            PRODUCTION: JSON.stringify(false)//设置这个全局常量用来判断测试环境
+        }),
     ],
 }

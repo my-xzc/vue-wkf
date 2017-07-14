@@ -26,13 +26,13 @@
 		</div>
 	</div>
 </div>
-<div class="btnGroup" v-show="!showLoading">
+<div class="btnGroup" v-if="!showLoading">
 	<button @click="back" class="btn btn-danger btn-block">上一题</button>
-	<button @click="next" v-show="!showSubmit"  type="button" class="btn btn-danger btn-block">下一题</button>
-	<button @click="commit" v-show="showSubmit" type="button" class="btn btn-danger btn-block">提&nbsp;&nbsp;交</button>
+	<button @click="next" v-if="!showSubmit"  type="button" class="btn btn-danger btn-block">下一题</button>
+	<button @click="commit" v-if="showSubmit" type="button" class="btn btn-danger btn-block">提&nbsp;&nbsp;交</button>
 </div>
-<v-toast v-show="showToast"></v-toast>
-<v-loading v-show="showLoading"></v-loading>
+<v-toast v-if="showToast"></v-toast>
+<v-loading v-if="showLoading"></v-loading>
 </div>
 </template>
 <script>
@@ -80,7 +80,6 @@
 				next(){
 					var vm=this;
 					var len=$("div.trouble_lists").length;
-					console.info( vm.showArticle,len)
 					if(vm.showArticle < len){
 						vm.showArticle+=1;
 					}
@@ -123,7 +122,7 @@
 							MessageBox('提示',res.message);
 						}else{
 							vm.$services.setCookie("info", JSON.stringify(res));
-							vm.$router.push({ path: 'level' });
+							vm.$router.push({ path: 'risklevel' });
 						}
 					}
 					var error = function(res){
@@ -178,7 +177,7 @@
 <style>
 .ywbl_fxcp_fxcp{
 	font-size: 1.2rem;
-	min-height:calc(100vh - 17rem);
+	min-height:calc(100vh - 16rem);
 
 }
 /*@media screen and(max-width:320px ){.ywbl_fxcp_fxcp{min-height:32.5rem;}}
@@ -188,6 +187,9 @@
 @media screen and (min-width:411px) and (max-width:639px){.ywbl_fxcp_fxcp{min-height:43.8rem;}}*/
 .article{
 	/*margin-top:1rem;*/
+}
+.btnGroup{
+	height: 14rem;
 }
 .progress {
     font-size: 1.4rem;

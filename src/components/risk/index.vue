@@ -4,13 +4,13 @@
         <p style="text-align: center;font-weight:900;font-size:1.5rem;margin-top: 1.5rem;">
             客户风险承受能力等级：
             <span class="rating_lvl">
-                {{riskResult.rating_lvl_name}}
+                {{rating_lvl_name}} ({{rating_lvl}})
             </span>
         </p>
         <p style="text-align: center;font-weight:900;font-size:1.2rem;color:#7D7D7D;margin: .5rem;">
             风险测评时间 :
             <span class="rating_date">
-                {{riskResult.exp_date}}
+                {{rating_date}}
             </span>
         </p>
         <div style="width: 100%;height: 0;border-bottom:1px solid #eee;margin: .8rem 0 2rem;">
@@ -40,7 +40,10 @@
 	export default {
 		data() {
 			return {
-				riskResult: {}
+                riskResult: {},
+                rating_lvl_name:'',
+                rating_lvl:'',
+                rating_date:''
 			}
 		},
 		methods: {
@@ -49,7 +52,11 @@
 		mounted() {
 			var vm = this;
 			vm.$services.getRiskResult(function(res){
-				vm.riskResult = res.results[0]
+                if(res.error==false){
+                    vm.rating_lvl_name = res.results[0].rating_lvl_name;
+                    vm.rating_lvl= res.results[0].rating_lvl;
+                    vm.rating_date=vm.$utils.yyyymmddFormat(res.results[0].rating_date);
+                }
 			})
 		}
 	}

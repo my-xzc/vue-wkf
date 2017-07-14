@@ -21,6 +21,7 @@ import NotFound from './components/notfound/index'
 import Survey from './components/survey/index'
 import Accquery from './components/accquery/index'
 import Level from './components/risk/level'
+
 const routes = [
 {
 	path: '/login',
@@ -109,7 +110,7 @@ const routes = [
 {
 	path: '/risklevel',
 	name: '风险测评等级',
-	component: RiskLevel,
+	component: Level,
 	alias:'/hxkf/risklevel'
 },
 {
@@ -147,12 +148,6 @@ const routes = [
 	name: '账户查询',
 	component: Accquery,
 	alias:'/hxkf/accquery'
-},
-{
-	path: '/level',
-	name: '测评结果',
-	component: Level,
-	alias:'/hxkf/level'
 },
 {
 	path: '*',

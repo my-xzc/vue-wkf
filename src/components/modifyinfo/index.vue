@@ -28,9 +28,12 @@
 	}
   #ywbl_zlxg_zlxg ,.mainBody a{
     height: 5rem;
-    position: relative;
+    
     line-height: 1;
-  }
+	}
+	.mainBody a{
+		position: relative;
+	}
 	.arrow {
 		display:inline-block;
 		position: absolute;

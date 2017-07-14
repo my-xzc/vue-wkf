@@ -26,30 +26,30 @@
                                     </label>
                             </label>
                         </div>
-                     <div v-if=" len == 25"  class="cell-item">
+                        <div v-if=" len == 25"  class="cell-item">
                                     <div class="cell-right">
                                         <textarea id="question" class="cell-textarea" placeholder="其他方面" name="answer26"></textarea>
                                     </div>
-                                </div> 
-                    <div v-if = " item.type == 'textarea' " class="m-cell " >
-                            <h2>30、如果您对本公司有任何建议，欢迎您写在下列方框中。</h2>
-                            <div class="m-cell">
-                                    <div class="cell-item">
-                                        <div class="cell-right">
-                                           <textarea id="questionarea" class="cell-textarea" placeholder="说出你的想法吧！" name="a30"></textarea>
+                        </div> 
+                        <div v-if = " item.type == 'textarea' " class="m-cell " >
+                                <h2>30、如果您对本公司有任何建议，欢迎您写在下列方框中。</h2>
+                                <div class="m-cell">
+                                        <div class="cell-item">
+                                            <div class="cell-right">
+                                            <textarea id="questionarea" class="cell-textarea" placeholder="说出你的想法吧！" name="a30"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                            </div>
-                    </div>
+                                </div>
+                        </div>
                 </div> 
                 </form>
-                <p>
+                <p class="intro">
                     到此，您已经填完了整张问卷，我们再次衷心的感谢您对我们公司的支持。我们一定会根据您对我们的意见和建议，把我们对您的服务做得更好。愿我们能陪伴您在事业上取得更大的成就！
                 </p>
                 <div class="m-button">
                     <a href="javascript:;" class="btn-block btn-primary" id="J_Btn" @click="commit">提&nbsp;交</a>
                 </div>
-                <mt-spinner v-show="showload" type="fading-circle"></mt-spinner>
+                <mt-spinner v-if="showload" type="fading-circle"></mt-spinner>
         </div>
 </template>
 <script>
@@ -121,7 +121,8 @@
     }
 
 </script>
-<style>
+<style >
+        
     #myddc img{
         width: 100%;
     }
@@ -139,8 +140,8 @@
     #html{
         padding:1rem;
     }
-    label.cell-item{
-        padding:1.5rem;
+   .m-cell label.cell-item{
+        padding:1.5rem !important;
     }
     .m-cell h2{
         padding:1rem;
@@ -162,8 +163,9 @@
     }
     .m-button{
         width: 90%;
-        margin: 2rem auto;
+         margin:auto; 
         font-size: 1.6rem;
+        padding:2rem 0;
     }
     .m-button .btn-primary{
         height: 4rem;
@@ -171,7 +173,10 @@
         line-height: 4rem;
         border-radius: 15px;
         background: #C7322F;
+        /* margin: 2rem 0; */
     }
-
+    #question{
+        margin-bottom: .5rem;
+    }
 </style>
 

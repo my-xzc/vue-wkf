@@ -2,7 +2,7 @@
       <transition   name="custom-classes-transition"
                     enter-active-class="animated fadeIn"
                     leave-active-class="animated fadeOut">
-        <router-view style="position:absolute;width:100%;height:auto;"></router-view>
+        <router-view class="app"></router-view>
     </transition>
 </template>
 <script>
@@ -27,4 +27,10 @@
     @import 'assets/css/mint.style';
     @import 'assets/css/animate.min.css';
     @import 'assets/css/common';
+	.app{
+		position:absolute;
+		width:100%;
+		height:100%;
+		z-index: 0;
+	}
 </style>

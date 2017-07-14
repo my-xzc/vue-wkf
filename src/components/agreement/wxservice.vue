@@ -1,8 +1,8 @@
 <template>
-<div class="agreement-body" id="wrapper" style="overflow: auto; display: block;-webkit-overflow-scrolling: touch;overflow-scrolling: touch;">
+<div class="agreement-body animated fadeIn" id="wrapper" style="overflow: auto; display: block;-webkit-overflow-scrolling: touch;overflow-scrolling: touch;">
 	<div class="swiper-wrapper" id="slide">
 		<div class="swiper-slide">
-			<div style="padding-bottom:80px;position:relative;-webkit-overflow-scrolling: touch;overflow-scrolling: touch;">
+			<div style="padding:1rem 1rem 6.5rem;position:relative;-webkit-overflow-scrolling: touch;overflow-scrolling: touch;line-height:1.5;">
 				<h3 class="text-center">
 				华西证券微信服务协议
 				</h3>
@@ -162,7 +162,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- <button @click="agree" id="deal" type="btn" class="btn btn-lg btn-danger btn-block">同&nbsp;&nbsp;意</button> -->
+	 <button @click="agree" id="deal" type="btn" class="btn btn-lg btn-danger btn-block">同&nbsp;&nbsp;意</button> 
 </div>
 </template>
 <script>
@@ -174,16 +174,18 @@
 		}
 	}
 </script>
-<style>
+<style scoped>
 	#deal{
+		position: fixed;
 		display: block;
 		font-size: 1.6rem;
 		background: #C7322F;
-		height: 48px;
+		bottom: 0;
+		height: 4rem;
 		width: 90%;
 		margin: 0 5% 2rem;
 		border: none;
 		color: #fff;
-		border-radius: 2rem;
+		border-radius: 1rem;
 	}
 </style>

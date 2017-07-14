@@ -4,6 +4,7 @@ import App from './App.vue'
 import configRouter from './router'
 import services from './services/dataServices'
 import statics from './services/dataStatic'
+import utils from './utils/utils'
 import store from "./vuex/store"
 import cache from "./vuex/cache"
 import bus from "./vuex/bus"
@@ -15,25 +16,25 @@ Vue.use(MintUI)
 Vue.use(VueRouter)
 
 Vue.config.debug = true;
-Vue.prototype.$services = services
-Vue.prototype.$statics = statics
-Vue.prototype.$store = store
-Vue.prototype.$bus = bus
-Vue.prototype.$cache = cache
+Vue.prototype.$services = services;
+Vue.prototype.$statics = statics;
+Vue.prototype.$store = store;
+Vue.prototype.$bus = bus;
+Vue.prototype.$utils = utils;
+Vue.prototype.$cache = cache;
 
 const router = new VueRouter({
-    //mode: 'history',
+    // mode: 'history',
     saveScrollPosition: true,
     transitionOnLoad: true,
     routes: configRouter.routes
 });
 router.beforeEach(({meta, path}, from, next) => {
-    var { auth = true } = meta
+    var { auth = true } = meta;
 	Vue.user = JSON.parse(services.getCookie('user'))
     var isLogin = Boolean(Vue.user);
-
     if(path !== '/login') {
-        localStorage.setItem('page', path)
+        localStorage.setItem('page', path);
     } else {
         // localStorage.removeItem('page')
     }
@@ -41,7 +42,7 @@ router.beforeEach(({meta, path}, from, next) => {
         isLogin = true;
         services.setCookie('user',JSON.stringify(res.results[0]))
     }, function(){
-        isLogin = false
+        isLogin = false; 
     });
     console.info('isLogin:', isLogin);
     if (auth && !isLogin && path !== '/login') {

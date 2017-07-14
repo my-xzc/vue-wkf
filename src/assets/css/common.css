@@ -26,7 +26,8 @@ div,header,footer{
 }
 html{font-size:10px}
 html,body{
-	height: 100%;
+  height: 100%;
+  background: #F2F2F2;
 }
 @media screen and (min-width:321px) and (max-width:375px){html{font-size:11px}}
 @media screen and (min-width:376px) and (max-width:414px){html{font-size:12px}}
@@ -383,8 +384,8 @@ html,body{
 	.delxrCheckBtn,.zhxxCheckBtn,.sjyzCheckBtn,.fxLevelBtn,.fxcpDisabled,.fxcpSubmit,.submityzm,.queren{
 	font-size:1.4rem;
 	background:#C7322F;
-	height: 48px;
-	line-height: 48px;
+	height: 4rem;
+	line-height: 4rem;
 	width: 90%;
 	margin:0 5% 24px;
 	border: none;
@@ -399,6 +400,9 @@ html,body{
 .mint-msgbox-btns{
 	height: 50px;
 	line-height: 50px;
+}
+.mint-msgbox-confirm{
+  color: #C7322F;
 }
 .mint-msgbox-confirm:active{
 	color:#999999!important;

@@ -4,7 +4,7 @@
 		<router-link to="/release"><a style="color:#000000;">资金账号：<span class="pull-right gt"></span><span class="pull-right">{{account}}</span></a></router-link>
 	</div>
 	<div class="row">
-		<div class="col-xs-12" v-for="item in items">
+		<div class="col-xs-12" v-for="item in items" :key="item.id">
 			<div v-show="item.isshow" class="manager-list clearfix">
 				<div>
 					<h4>{{item.pmname}}</h4>
@@ -16,8 +16,8 @@
 			</div>
 		</div>
 	</div>
-	<v-toast v-show="showToast"></v-toast>
-	<v-loading v-show="showLoading"></v-loading>
+	<v-toast v-if="showToast"></v-toast>
+	<v-loading v-if="showLoading"></v-loading>
 </div>
 </template>
 <script>
@@ -172,15 +172,16 @@
 }
 
 #kf_accountManager .sub-btn {
-		margin: 0 auto;
-		width: 56px!important;
-		display: block;
-		height: 18px;
+	margin: 0 auto;
+    width: 56px!important;
+    display: block;
+    height: 2.4rem;
+    line-height: 2.4rem;
     font-size: 14px !important;
-		padding:6px 0;
-    color:#fff;
+    /* padding: 6px 0; */
+    color: #fff;
     background-color: #D13B36;
-		text-align: center;
+    text-align: center;
 }
 
 .gt {

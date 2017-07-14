@@ -32,10 +32,10 @@
 	</form>
 	<input v-on:click="wxLogin" type="button" id="bind" class="btn btn-danger btn-lg btn-block queren" :disabled="!Boolean(checked)" value="确认绑定">
 	<button v-if="this.showDeal" @click="agree" id="deal" type="btn" class="btn btn-lg btn-danger btn-block">同&nbsp;&nbsp;意</button>
-	<v-tips v-show="showTips"></v-tips>
-	<v-loading v-show="showLoading"></v-loading>
-    <v-toast v-show="showToast"></v-toast>
-	<WXservice v-show="showWXservice"></WXservice>
+	<v-tips v-if="showTips"></v-tips>
+	<v-loading v-if="showLoading"></v-loading>
+    <v-toast v-if="showToast"></v-toast>
+	<WXservice v-if="showWXservice" class="animated" v-bind:class="[showWXservice ? zoomIn : zoomOut]"></WXservice>
 </div>
 </template>
 <script>
@@ -64,7 +64,9 @@
 					},
 					checked: '',
 					tipsMsg: '',
-					showTips: false
+					showTips: false,
+					zoomIn: 'zoomIn',
+  					zoomOut: 'zoomOut'
 				}
 			},
 			components: {
@@ -149,7 +151,8 @@
 								confirmButtonText: '我知道了'
 							}).then(actions => {
 								var page = localStorage.getItem('page');
-								vm.$router.push(page || 'account')
+								console.log(page);
+								vm.$router.push( page || 'account')
 							});
 						}
 					}, function(err) {
@@ -248,7 +251,7 @@
 #checkbox {
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	/*margin-top: -3px;*/
+	margin-top: -2px;
 	margin-right: 5px;
 }
 

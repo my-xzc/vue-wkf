@@ -23,8 +23,8 @@
         </div>
 		<div class="questionnaire-supplement">
 			<p v-if=" showP1 || showP2" class="queryP">风险提示：</p>
-			<p v-show="showP1" class="queryP" >分级基金产品特点区别于传统上市基金和股票，B份额带有杠杆属性，特别是临近向下折算时的杠杆较高，具有一定风险，请您详细阅读基金公司发布的文件、公告、在全面了解分级基金产品知识及风险收益特征的基础上谨慎投资。</p>
-			<p v-show="showP2" class="queryP" >创业板企业经营波动很大，退市制度要求严格，投资风险相对较高，请您谨慎投资。为确保重要信息能够及时通知到您，请在【我的账户】-【业务办理】-【资料修改】菜单中填写第二联系人资料。</p>
+			<p v-if="showP1" class="queryP" >分级基金产品特点区别于传统上市基金和股票，B份额带有杠杆属性，特别是临近向下折算时的杠杆较高，具有一定风险，请您详细阅读基金公司发布的文件、公告、在全面了解分级基金产品知识及风险收益特征的基础上谨慎投资。</p>
+			<p v-if="showP2" class="queryP" >创业板企业经营波动很大，退市制度要求严格，投资风险相对较高，请您谨慎投资。为确保重要信息能够及时通知到您，请在【我的账户】-【业务办理】-【资料修改】菜单中填写第二联系人资料。</p>
 			<p>现我公司提供更多种基金以及金融产品供您选择，您可以根据产品特点、投资方向、风险收益特征等，结合您自身的风险等级和投资偏好来选择相匹配的产品。同时请您通过正规渠道认购产品，防范非法集资，保证自身权益。</p>
 			<p>您可以通过以下途径查询产品批准信息：</p>
 			<p>1、中国证券投资基金协会网站<a href="http://www.amac.org.cn">http://www.amac.org.cn</a></p>
@@ -189,9 +189,8 @@
 			},
 	}
 </script>
-<style>
+<style scoped>
 	.questionnaire {
-		background-color: #fafafa;
 		width: 100%;
 		min-height: 100%;
 		padding: 1rem;
@@ -232,19 +231,20 @@
 	    border-radius: 0;
 	}
 	.questionnaire .submit-quest {
-		margin: 24px auto;
+		/* margin: 24px auto; */
 		text-align: center;
-		height: 48px;
+		/* height: 48px; */
 		width: 100%;
 		box-sizing: border-box;
 	}
 	.questionnaire .submit-quest input {
 		color: #fff;
-		height: 48px;
+		height: 4rem;
 		width: 90%;
 		border-radius: 15px;
 		background-color: #c52727;
 		font-size: 1.6rem!important;
+		margin: 2rem 0;
 	}
 	.mint-radio-input:checked + .mint-radio-core {
 	    background-color: #c52727;

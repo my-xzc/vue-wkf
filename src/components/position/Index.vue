@@ -193,6 +193,7 @@
 		color: black;
 	}
 	label.btn{
-		height: 3rem;
+		height: 2.8rem;
+		font-size: 1.4rem;
 	}
 </style>

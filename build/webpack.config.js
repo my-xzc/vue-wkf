@@ -5,7 +5,6 @@ var root_path = path.resolve(__dirname);
 var assets_path = path.resolve(root_path, 'src/assets');
 var build_path = path.resolve(root_path, 'build');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
     devServer: {
         historyApiFallback: true,
@@ -55,10 +54,12 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel?presets=es2015',
                 exclude: /node_modules/
-            }, {
+            },
+            {
                 test: /\.css$/,
                 loaders: ['style', 'css'],
-            }, {
+            },
+            {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'url-loader?limit=100&name=images/[hash:8].[name].[ext]'
             }
@@ -78,7 +79,8 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"production"'
-            }
-        })
+            },
+            PRODUCTION: JSON.stringify(true)//设置这个全局常量用来判断生产环境
+        }),
     ],
 }

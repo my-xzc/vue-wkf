@@ -1,13 +1,13 @@
 <template>
     <div id="nav">
         <div class="tab">
-             <ul><li><a href="javascript:;" v-on:click="showPosition">持仓查询</a></li><li><a href="javascript:;" v-on:click="showFund">资金查询</a></li><li><a href="javascript:;" v-on:click="showAllo">中签查询</a></li></ul>
+             <ul><li><a href="javascript:;" v-on:click="click">持仓查询</a></li><li><a href="javascript:;" v-on:click="click">资金查询</a></li><li><a href="javascript:;" v-on:click="click">中签查询</a></li></ul>
              <span class="slider"></span>
         </div>
         <div id="accqueryBody">
-            <v-fundation v-show="fundShow"></v-fundation>
-            <v-position v-show="posiShow"></v-position>
-            <v-allocation v-show="allocatShow"></v-allocation>
+            <v-fundation v-if="fundShow" class="animated fadeIn"></v-fundation>
+            <v-position v-if="posiShow" class="animated fadeIn"></v-position>
+            <v-allocation v-if="allocatShow" class="animated fadeIn"></v-allocation>
         </div>
     </div>
 </template>
@@ -26,32 +26,32 @@
         },
         methods:{
             click (){
+                var vm=this;
                  $('.tab ul li').bind('click',function(){
                        var  index = $(this).index();
                             index= Number(index);
                        var slide = ((index+1)*2-1)*16.66;
-                    $('.slider').css({left: slide+'%'});
+                        $('.slider').css({left: slide+'%'});
+                        switch(index){
+                            case 0:
+                                vm.posiShow=true;
+                                vm.fundShow=false;
+                                vm.allocatShow=false;
+                                break;
+                            case 1:
+                                vm.posiShow=false;
+                                vm.fundShow=true;
+                                vm.allocatShow=false;
+                                break;
+                            case 2:
+                                vm.posiShow=false;
+                                vm.fundShow=false;
+                                vm.allocatShow=true;
+                                break;
+                            default:break;
+                        }
                 })
-            },
-            showPosition(){
-                this.posiShow=true;
-                this.fundShow=false;
-                this.allocatShow=false;
-                this.click ();
-            },
-            showFund(){
-                this.posiShow=false;
-                this.fundShow=true;
-                this.allocatShow=false;
-                this.click ();
-            },
-            showAllo(){
-                this.posiShow=false;
-                this.fundShow=false;
-                this.allocatShow=true;
-                this.click ();
             }
-           
         },
         mounted(){
 
@@ -83,6 +83,7 @@
         width: 100%;
         height: 100%;
         color: #000;
+        font-size: 1.2rem;
     }
     .slider {
         position: absolute;

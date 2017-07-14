@@ -17,7 +17,7 @@
 				<p class="">成本/现价</p>
 			</div>
 		</div>
-		<div v-show="positions.length" v-for="position in positions" class="list-content text-center">
+		<div v-show="positions.length" v-for="(position,index) in positions" :key="index" class="list-content text-center">
 			<div class="row">
 				<div class="col-xs-3">
 					<p class="list-name">{{ position.fund_name }}</p>
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 	</div>
-	<div v-show="!positions.length" class="noInfo">
+	<div v-if="!positions.length" class="noInfo">
 		<div><img src="../../assets/img/emp-box.png"></div>
 		无相关信息！
 	</div>

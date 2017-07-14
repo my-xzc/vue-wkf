@@ -190,12 +190,6 @@ staticData.myddcQuestions = {
             'B、了解',
             'C、不太清楚',
             'D、不清楚'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D'
         ]
     },
     {
@@ -208,13 +202,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -227,13 +214,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -246,13 +226,6 @@ staticData.myddcQuestions = {
             'C、网上开户',
             'D、网上预登记',
             'E、证券投资咨询服务'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -265,13 +238,6 @@ staticData.myddcQuestions = {
             'C、理财经理',
             'D、公司其他产品',
             'E、其他'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -283,12 +249,6 @@ staticData.myddcQuestions = {
             'B、稳定性能',
             'C、界面外观',
             'D、提供更多金融产品'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D'
         ]
     },
     {
@@ -302,14 +262,6 @@ staticData.myddcQuestions = {
             'D、不太满意',
             'E、不满意',
             'F、未使用，不了解'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-            'F'
         ]
     },
     {
@@ -322,13 +274,6 @@ staticData.myddcQuestions = {
             'C、安全的账户体系',
             'D、专业的咨询服务',
             'E、快速的申购、赎回方式'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -341,13 +286,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -360,13 +298,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -379,13 +310,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -396,11 +320,6 @@ staticData.myddcQuestions = {
             'A、95584人工服务',
             'B、微信客户端',
             'C、华西官网常见问题解答'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C'
         ]
     },
     {
@@ -413,13 +332,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -431,12 +343,6 @@ staticData.myddcQuestions = {
             'B、了解',
             'C、不太清楚',
             'D、不清楚'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D'
         ]
     },
     {
@@ -449,13 +355,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -467,12 +366,6 @@ staticData.myddcQuestions = {
             'B、服务内容',
             'C、服务专业性',
             'D、服务及时性'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D'
         ]
     },
     {
@@ -485,13 +378,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -504,13 +390,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -523,13 +402,6 @@ staticData.myddcQuestions = {
             'C、服务态度',
             'D、服务专业性',
             'E、服务及时性'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -542,13 +414,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -561,13 +426,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -580,13 +438,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -599,13 +450,6 @@ staticData.myddcQuestions = {
             'C、个股分析',
             'D、大盘研判',
             'E、实战技巧'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -619,14 +463,6 @@ staticData.myddcQuestions = {
             'D、电话',
             'E、手机APP',
             'F、公司网站'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-            'F'
         ]
     },
     {
@@ -639,13 +475,6 @@ staticData.myddcQuestions = {
             'C、公司网站',
             'D、交易软件',
             'E、微信客户端'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -657,12 +486,6 @@ staticData.myddcQuestions = {
             'B、业深度分析',
             'C、国家宏观政策讲解',
             'D、其它'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D'
         ]
     },
     {
@@ -675,13 +498,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -694,13 +510,6 @@ staticData.myddcQuestions = {
             'C、95584电话',
             'D、微信客户端',
             'E、短信'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {
@@ -713,13 +522,6 @@ staticData.myddcQuestions = {
             'C、一般',
             'D、不太满意',
             'E、不满意'
-        ],
-        'selections': [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E'
         ]
     },
     {

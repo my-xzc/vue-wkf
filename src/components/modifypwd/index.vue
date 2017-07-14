@@ -7,7 +7,7 @@
 		<form>
 			<label for="ipt">
 				<ul>
-					<li v-for="i in items.length">{{items[i-1]}}</li>
+					<li v-for="i in items.length" :key="i">{{items[i-1]}}</li>
 				</ul>
 			</label>
 			<input v-on:input="inputPwd" class="pwdInput" type="tel" id="ipt" maxlength="6" v-model:value="pwd" autofocus="true">
@@ -89,7 +89,6 @@
 						username: vm.user.khzh,
 						password: vm.RSAEncrypt(this.pwd)
 					}
-						console.log(vm.user.address)
 					vm.showLoading = true;
 					vm.$services.validPassword(params,function(res){
 						vm.showLoading = false;
@@ -212,7 +211,7 @@
     height: auto;
     padding: 10px;
     text-align: center;
-    z-index: 9999;
+    /* z-index: 9999; */
 }
 .box label {
     display: block;
@@ -246,7 +245,7 @@
 .mmxgNext,.mmxgCheckChange{
 	font-size:1.6rem;
 	background:#C7322F;
-	height: 48px;
+	height: 4rem;
 	width: 90%;
 	margin:2rem 5% 2rem;
 	border: none;

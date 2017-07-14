@@ -1,5 +1,5 @@
 <template>
-	<div style="padding-bottom:7rem;position:relative;-webkit-overflow-scrolling: touch;">
+	<div class="animated fadeIn" style="padding-bottom:7rem;position:relative;-webkit-overflow-scrolling: touch;">
     <div class="text" style="padding: 1rem 1.5rem;font-size: 1.2rem;">
         <p>尊敬的客户：
         </p>
@@ -52,17 +52,17 @@
 </div>
 </template>
 <style>
-        .agree-btn {
-				position: fixed;
+    .agree-btn {
+		position: fixed;
         left: 5%;
-        bottom: 4rem;
+        bottom: 3rem;
         margin: 1rem auto;
         width: 90%;
         border-radius: 15px;
         font-size: 1.6rem;
-        height: 48px!important;
-				background: #C7322F;
-				color: #fff;
+        height: 4rem;
+		background: #C7322F;
+		color: #fff;
     }
 		.text p{
 			line-height: 1.5;

@@ -42,7 +42,7 @@ import {Radio,MessageBox} from 'mint-ui';
 				getInfo () {
 						var vm=this;
 						var infoObj={};
-						vm.info=vm.$services.getCookie("user");
+							vm.info=vm.$services.getCookie("user");
 						if(vm.info){
 							infoObj=JSON.parse(vm.info);
 							this.level = infoObj.rating_lvl;
@@ -50,11 +50,18 @@ import {Radio,MessageBox} from 'mint-ui';
 							this.types = infoObj.invest_pro_name;
 							this.duration=infoObj.invest_lmt_name;
 							this.income=infoObj.expect_income_name;
+						vm.$services.getRiskResult(function(res){
+								if(res.error == false){
+									vm.date = vm.$utils.yyyymmddFormat(res.results[0].rating_date);
+								}
+							})
 						}else{
 							MessageBox('提示','未获取到相关信息！')
 						}
 							
-				}
+				},
+				
+
 			},
 			mounted() {
 				this.getInfo();	

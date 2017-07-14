@@ -75,7 +75,7 @@
 		height: 3rem;
 	}
 	#kf_relieve .main{
-		min-height: calc(100vh - 270px);
+		min-height: calc(100vh - 27rem);
 	}
 	.relieve {
 	    background-image: url(../../assets/img/relieve.png);

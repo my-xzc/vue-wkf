@@ -1,6 +1,7 @@
 <template>
 <div style="text-align:center; margin:0 auto;">
 	<img style="margin:3rem auto;" :src="NotFound" alt="">
+	
 </div>
 </template>
 <script>

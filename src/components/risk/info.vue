@@ -121,7 +121,7 @@
 						if(res.error == true){
 							MessageBox('提示',res.message);
 						}else{
-							vm.$services.setCookie("info", JSON.stringify(res));
+							vm.$services.setCookie("info", JSON.stringify(res.results[0]));
 							vm.$router.push({ path: 'risklevel' });
 						}
 					}

@@ -54,7 +54,7 @@
             }
         },
         mounted(){
-
+                console.log(this.$store.state.showPwdbox);
         },
         components: {
  				VPosition,

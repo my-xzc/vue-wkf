@@ -10,7 +10,7 @@
 					<li v-for="i in items.length" :key="i">{{items[i-1]}}</li>
 				</ul>
 			</label>
-			<input v-on:input="inputPwd" class="pwdInput" type="tel" id="ipt" maxlength="6" v-model:value="pwd" autofocus="true">
+			<input v-on:input="inputPwd" class="pwdInput" type="number" id="ipt" maxlength="6" v-model:value="pwd" autofocus="true">
 		</form>
 		<p class="response_err">{{errMsg}}</p>
 		<button v-if="changeNext==1" disabled class="mmxgNext">下一步</button>

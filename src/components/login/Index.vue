@@ -31,8 +31,8 @@
 		</div>
 	</form>
 	<input v-on:click="wxLogin" type="button" id="bind" class="btn btn-danger btn-lg btn-block queren" :disabled="!Boolean(checked)" value="确认绑定">
-	<button v-if="this.showDeal" @click="agree" id="deal" type="btn" class="btn btn-lg btn-danger btn-block">同&nbsp;&nbsp;意</button>
-	<v-tips v-if="showTips"></v-tips>
+	<button v-if="showDeal" @click="agree" id="deal" type="btn" class="btn btn-lg btn-danger btn-block">同&nbsp;&nbsp;意</button>
+	<v-tips v-show="showTips"></v-tips>
 	<v-loading v-if="showLoading"></v-loading>
     <v-toast v-if="showToast"></v-toast>
 	<WXservice v-if="showWXservice" class="animated" v-bind:class="[showWXservice ? zoomIn : zoomOut]"></WXservice>
@@ -105,7 +105,7 @@
 				this.showWXservice = false;
 				this.showDeal = false;
 				},
-				showTips() {
+				showTip() {
 					this.showTips = true;
 				},
 				hideTips() {
@@ -151,7 +151,6 @@
 								confirmButtonText: '我知道了'
 							}).then(actions => {
 								var page = localStorage.getItem('page');
-								console.log(page);
 								vm.$router.push( page || 'account')
 							});
 						}

@@ -15,14 +15,14 @@
 				<!-- </div> -->
 			</div>
 		</div>
-	</div>
-	<v-toast v-if="showToast"></v-toast>
+	</div>	
 	<v-loading v-if="showLoading"></v-loading>
 </div>
 </template>
 <script>
-	import VToast from '../common/toast'
+	// import VToast from '../common/toast'
 	import VLoading from '../common/loading'
+	import { MessageBox } from 'mint-ui';
 
 	export default {
 		data() {
@@ -31,23 +31,14 @@
 					showLoading: false,
 					account: '',
 					lock: false,
-					items: []
+					items: [],
+					message:''
 				}
 			},
 			components: {
-				VToast,
 				VLoading
 			},
 			methods: {
-				toast(msg) {
-					var vm = this;
-					vm.showToast = true
-					vm.$children[1].msg = msg
-					setTimeout(function() {
-						vm.showToast = false
-						vm.lock = false;
-					}, 1000)
-				},
 				getAccount() {
 					var a = this.$services.getCookie('user');
 					if (a) {
@@ -81,7 +72,10 @@
 						callback = function(res) {
 							item.subscibed = !item.subscibed;
 							item.action = item.subscibed ? '已订阅' : '订阅';
-							vm.toast(item.subscibed ? msg[0] : msg[1]);
+							MessageBox.alert(item.subscibed ? msg[0] : msg[1]).then(action => {
+									vm.showToast = false
+									vm.lock = false;
+							});
 							vm.showLoading = false;
 						},
 						errCallback = function(res) {
@@ -106,6 +100,25 @@
 	}
 </script>
 <style>
+.mint-popup-top,
+.mint-popup {
+        padding: 1rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        line-height: 1.5rem;
+        background-color: #333;
+        color: #fff;
+        opacity: .8;
+        z-index: 10000001;
+        text-align: center;
+    }
+.mint-popup-top {
+
+     -webkit-transform: translate3d(0, 0, 0); 
+     transform: translate3d(0, 0, 0); 
+}
 .relieve{
     background-image: url(../../assets/img/relieve.png);
     background-position: 0 0;
@@ -118,7 +131,7 @@
 }
 .fundAccount{
     margin-top: 1.4rem;
-    margin-bottom:4.1rem;
+    margin-bottom:3.1rem;
     padding-right:1.4rem;
     padding-left:1.4rem;
     height:4.1rem;
@@ -144,9 +157,11 @@
 }
 .manager-list h4{
     font-weight:900;
+	font-size:1.3rem;
+	margin:10px 0;
 }
 .manager-list p{
-    font-size:0.8rem;
+    font-size: 1.1rem;
     color:#414141;
 }
 .subscibe {
@@ -172,7 +187,7 @@
 }
 
 #kf_accountManager .sub-btn {
-	margin: 0 auto;
+	margin: .8rem auto;
     width: 56px!important;
     display: block;
     height: 2.4rem;

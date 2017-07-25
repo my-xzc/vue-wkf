@@ -37,6 +37,7 @@
 				MessageBox.confirm("解除绑定后无法收到推送服务，是否确认解除绑定？","温馨提示").then(
 						action => {
 							this.logout();
+							
 						},
 						action => {
 							
@@ -45,7 +46,7 @@
 			logout() {
 				var vm = this;
 				var callback = function(res){
-					// vm.$services.deleteCookie('user');
+					vm.$services.deleteCookie('user');
 					WeixinJSBridge.invoke('closeWindow', {}, function(res) {});
 				}
 				vm.$services.logout(callback);

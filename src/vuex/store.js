@@ -6,7 +6,8 @@ Vue.use(Vuex)
 const state = {
 	_lastPage: '',
 	_currentPage: '',
-	singleSelectData: []// ['请选择学历','高中及以下', '中专', '大专', '本科', '硕士', '博士']
+	singleSelectData: [],// ['请选择学历','高中及以下', '中专', '大专', '本科', '硕士', '博士']
+	showPwdbox:false
 }
 
 const mutations = {
@@ -17,6 +18,9 @@ const mutations = {
 	},
 	setSingleSelectData(state, data) {
 		state.singleSelectData = data;
+	},
+	setShowState(state,data) { 
+		state.showPwdbox = data;
 	}
 }
 
@@ -35,6 +39,11 @@ const actions = {
 		commit
 	}, data) {
 		commit('setSingleSelectData', data)
+	},
+	SET_SHOW_STATE({
+		commit
+	}, data) { 
+		commit('setShowState',data)
 	}
 }
 

@@ -39,9 +39,9 @@
 	<div class="submit-quest">
 		<input class="btn btn-lg" @click="submitQuestions" type="button" value="提    交" name="">
 	</div>
-	<v-loading v-show="showLoading"></v-loading>
-    <v-toast v-show="showToast"></v-toast>
-	<v-preloading v-show="showPreloading"></v-preloading>
+	<v-loading v-if="showLoading"></v-loading>
+    <v-toast v-if="showToast"></v-toast>
+	<v-preloading v-if="showPreloading"></v-preloading>
 </div>
 </template>
 <script>
@@ -137,9 +137,19 @@
 						'funcNo': 2000128,
 						'khzzh': JSON.parse(vm.$services.getCookie('user')).khzh,
 					};
+					vm.showLoading = true;
 					this.$services.questionnaire(params, function(res) {
-						vm.status = parseInt(res.results[0].khstatus);
-						vm.status && MessageBox("提示","您已经做过问卷回访！");
+						vm.showLoading = false;
+						if(res.error_no =='-1'){
+							MessageBox("提示",res.error_info).then(actions=>{
+									vm.$router.push({ path: 'business' });
+								})
+						}else{
+							vm.status = parseInt(res.results[0].khstatus);
+							vm.status && MessageBox("提示","您已经做过问卷回访！").then(actions=>{
+							vm.$router.push({ path: 'business' });
+						});
+						}
 					})
 				},
 				checkSelect(value){

@@ -12,6 +12,7 @@ module.exports = {
         inline: true,
         progress: true
     },
+    devtool: 'cheap-module-source-map',
     // 入口文件，path.resolve()方法，可以结合我们给定的两个参数最后生成绝对路径，最终指向的就是我们的index.js文件
     // entry: path.resolve(__dirname, '../app/main.js'),
     entry: {
@@ -54,7 +55,20 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'url-loader?limit=100000&name=images/[hash:8].[name].[ext]'
             }
-        ]
+        ],
+        rules: [
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                {
+                    loader: 'url-loader',
+                    options: {
+                    limit: 8192
+                    }  
+                }
+                ]
+            }
+            ]
     },
     plugins: [
         new HtmlWebpackPlugin({

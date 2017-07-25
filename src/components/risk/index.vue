@@ -2,16 +2,10 @@
 <div class="risk-result">
     <div class="text" style="padding: 1rem 1.5rem;font-size:1.2rem;padding-bottom:100px;">
         <p style="text-align: center;font-weight:900;font-size:1.5rem;margin-top: 1.5rem;">
-            客户风险承受能力等级：
-            <span class="rating_lvl">
-                {{rating_lvl_name}} ({{rating_lvl}})
-            </span>
+            客户风险承受能力等级：<span class="rating_lvl"> {{rating_lvl_name}}</span>
         </p>
         <p style="text-align: center;font-weight:900;font-size:1.2rem;color:#7D7D7D;margin: .5rem;">
-            风险测评时间 :
-            <span class="rating_date">
-                {{rating_date}}
-            </span>
+            风险测评时间 :<span class="rating_date"> {{rating_date}}</span>
         </p>
         <div style="width: 100%;height: 0;border-bottom:1px solid #eee;margin: .8rem 0 2rem;">
         </div>

@@ -63,7 +63,20 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'url-loader?limit=100&name=images/[hash:8].[name].[ext]'
             }
+        ],
+        rules: [
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }  
+          }
         ]
+      }
+    ]
     },
     plugins: [
         new HtmlWebpackPlugin({

@@ -3,7 +3,7 @@
 	<div id="render" class="fxcpPage page-content">
 		<header class="header fxlevel-header">
 			<span class="logo fxlevel-logo"></span>
-			<p class="level">客户风险承受能力等级： <span id="rating_lvl_name">{{level}}</span>(<span id="rating_lvl"></span >)</p>
+			<p class="level">客户风险承受能力等级： <span id="rating_lvl_name">{{levelName}}</span></p>
 			<p style="margin:10px 0;">风险测评时间 : <span class='rating_date'>{{date}}</span></p>
 		</header>
 		<div class="main">
@@ -13,15 +13,15 @@
 			</div>
 			<div class="investment-kind">
 				<p>投资品种:</p>
-				<p ><span class="types"></span>{{types}}</p>
+				<p >{{types}}</p>
 			</div>
 			<div class="investment-kind expect">
                 <p>期望收益：</p>
-                    <div class="income">{{income}}</div>
+                    <p class="income">{{income}}</p>
             	</div>
 		</div>
 	</div>
-	<router-link to='/business' class=" btn-danger btn-block fxLevelBtn">确&nbsp;&nbsp;定</router-link>
+	<a class=" btn-danger btn-block fxLevelBtn" v-on:click="deleteInfo">确&nbsp;&nbsp;定</a>
 </div>
 </template>
 <script>
@@ -42,7 +42,7 @@ import {Radio,MessageBox} from 'mint-ui';
 				getInfo () {
 						var vm=this;
 						var infoObj={};
-							vm.info=vm.$services.getCookie("user");
+							vm.info=vm.$services.getCookie("info");
 						if(vm.info){
 							infoObj=JSON.parse(vm.info);
 							this.level = infoObj.rating_lvl;
@@ -60,8 +60,11 @@ import {Radio,MessageBox} from 'mint-ui';
 						}
 							
 				},
-				
-
+				deleteInfo() {
+						var vm=this;
+							vm.$services.deleteCookie('info');
+							vm.$router.push('business');
+				}
 			},
 			mounted() {
 				this.getInfo();	

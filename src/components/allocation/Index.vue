@@ -10,7 +10,7 @@
             </div>
             <div id="render">
 				<div v-show="allocation.length" class="row">
-					<div v-for="item in allocation" class="col-xs-12">
+					<div v-for="(item,index) in allocation" class="col-xs-12" :key="index">
 						<div class="ballot-list">
 							<p class="text-center solid">{{item.stock_name}}</p>
 							<p class="dashed">股票代码： <span class="pull-right">{{item.stock_code}}</span></p>
@@ -32,6 +32,7 @@
         </div>
     <v-loading v-show="showLoading"></v-loading>
     <v-toast v-show="showToast"></v-toast>
+    </div>
     </div>
 </template>
 <script>
